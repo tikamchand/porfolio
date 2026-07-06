@@ -1,26 +1,178 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #14181f;
+  --paper: #ffffff;
+  --mist: #f4f6f8;
+  --slate: #5b6472;
+  --signal: #1e3a5f;
+  --brass: #b98b4e;
+  --border: #e4e7eb;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-mist: var(--mist);
+  --color-slate: var(--slate);
+  --color-signal: var(--signal);
+  --color-brass: var(--brass);
+  --color-border: var(--border);
+
+  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --radius-card: 6px;
+  --radius-button: 4px;
+
+  --spacing-gutter-mobile: 24px;
+  --spacing-gutter-desktop: 64px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Focus states */
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+/* Hover lift for cards */
+.hover-lift {
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-3px);
+  border-color: var(--slate);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift:hover {
+    transform: none;
+  }
+}
+
+/* Nav / button hover */
+.hover-subtle {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Section container */
+.container-site {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter-mobile);
+}
+
+@media (min-width: 768px) {
+  .container-site {
+    padding-inline: var(--spacing-gutter-desktop);
+  }
+}
+
+/* Section spacing — 8px grid */
+.section-pad {
+  padding-block: 64px;
+}
+
+@media (min-width: 768px) {
+  .section-pad {
+    padding-block: 96px;
+  }
+}
+
+/* Timeline */
+.timeline-line {
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--border);
+}
+
+.timeline-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid var(--signal);
+  background: var(--paper);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-dot--active {
+  background: var(--signal);
+}
+
+/* Stack band */
+.stack-band {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.stack-band + .stack-band {
+  margin-top: 8px;
+}
+
+/* Status card blink */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.status-pulse {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-pulse {
+    animation: none;
+  }
 }
