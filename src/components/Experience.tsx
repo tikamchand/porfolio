@@ -10,7 +10,9 @@ export function Experience() {
     >
       <div className="container-site">
         <RevealOnScroll>
-          <p className="font-mono text-xs uppercase tracking-widest text-slate">03 — Experience</p>
+          <p className="font-mono text-xs uppercase tracking-widest text-accent">
+            03 — Experience
+          </p>
           <h2
             id="experience-heading"
             className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink"
@@ -30,22 +32,18 @@ export function Experience() {
                 />
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-                    <h3 className="font-display text-xl font-semibold text-ink">
-                      {job.role}
-                    </h3>
+                    <h3 className="font-display text-xl font-semibold text-ink">{job.role}</h3>
                     <time className="font-mono text-xs uppercase tracking-widest text-slate">
                       {job.period}
                     </time>
                   </div>
-                  <p className="mt-1 font-mono text-sm text-brass">{job.company}</p>
-                  <p className="mt-4 text-base leading-relaxed text-slate">
-                    {job.description}
-                  </p>
+                  <p className="mt-1 font-mono text-sm text-accent">{job.company}</p>
+                  <p className="mt-4 text-base leading-relaxed text-slate">{job.description}</p>
                   <ul className="mt-4 space-y-2">
                     {job.highlights.map((item) => (
                       <li
                         key={item}
-                        className="flex gap-2 text-sm text-slate before:font-mono before:text-signal before:content-['→']"
+                        className="flex gap-2 text-sm text-slate before:font-mono before:text-accent before:content-['→']"
                       >
                         {item}
                       </li>

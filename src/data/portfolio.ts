@@ -6,6 +6,7 @@ export const site = {
   phone: "7264934079",
   linkedin: "https://linkedin.com/in/tikamchand-kumawat",
   github: "https://github.com/tikamchand",
+  x: "https://x.com/NerdyWebdeev",
   tagline:
     "Building scalable platforms across logistics, telehealth, and e-commerce with React, Next.js, Node.js, and TypeScript.",
   summary:

@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { navLinks, site } from "@/data/portfolio";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -15,28 +17,30 @@ export function Nav() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-colors duration-200 ${
-        scrolled ? "border-border bg-paper/95 backdrop-blur-sm" : "border-transparent bg-paper"
+      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
+        scrolled
+          ? "border-border bg-paper/90 shadow-sm backdrop-blur-md"
+          : "border-transparent bg-paper/80 backdrop-blur-sm"
       }`}
     >
       <nav
-        className="container-site flex h-16 items-center justify-between"
+        className="container-site flex h-16 items-center justify-between gap-4"
         aria-label="Main navigation"
       >
         <a
           href="#"
-          className="font-display text-base font-semibold tracking-tight text-ink hover-subtle hover:text-signal focus-visible:rounded-[4px]"
+          className="font-display text-base font-semibold tracking-tight text-ink hover-subtle hover:text-accent focus-visible:rounded-lg"
         >
           {site.name.split(" ")[0]}
-          <span className="text-brass">.</span>
+          <span className="text-accent">.</span>
         </a>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-6 lg:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="font-mono text-xs uppercase tracking-widest text-slate hover-subtle hover:text-signal"
+                className="font-mono text-xs uppercase tracking-widest text-slate hover-subtle hover:text-accent"
               >
                 {link.label}
               </a>
@@ -44,31 +48,54 @@ export function Nav() {
           ))}
         </ul>
 
-        <a
-          href="#contact"
-          className="hidden rounded-[4px] border border-border bg-mist px-4 py-2 font-mono text-xs uppercase tracking-widest text-ink hover-subtle hover:border-signal hover:text-signal md:inline-block"
-        >
-          Get in touch
-        </a>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <a
+            href="#contact"
+            className="hidden cursor-pointer rounded-lg border border-border bg-mist px-4 py-2 font-mono text-xs uppercase tracking-widest text-ink hover-subtle hover:border-accent hover:text-accent md:inline-block"
+          >
+            Get in touch
+          </a>
 
-        <details className="relative md:hidden">
-          <summary className="cursor-pointer list-none rounded-[4px] border border-border px-3 py-2 font-mono text-xs uppercase tracking-widest text-slate hover-subtle hover:text-signal [&::-webkit-details-marker]:hidden">
+          <button
+            type="button"
+            className="cursor-pointer rounded-lg border border-border px-3 py-2 font-mono text-xs uppercase tracking-widest text-slate hover-subtle hover:text-accent md:hidden"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMenuOpen((o) => !o)}
+          >
             Menu
-          </summary>
-          <ul className="absolute right-0 top-full mt-2 min-w-[160px] border border-border bg-paper p-2">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="block rounded-[4px] px-3 py-2 font-mono text-xs uppercase tracking-widest text-slate hover-subtle hover:bg-mist hover:text-signal"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </details>
+          </button>
+        </div>
       </nav>
+
+      {menuOpen && (
+        <ul
+          id="mobile-menu"
+          className="animate-fade-in border-t border-border bg-paper px-6 py-3 md:hidden"
+        >
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="block rounded-lg px-3 py-2.5 font-mono text-xs uppercase tracking-widest text-slate hover-subtle hover:bg-mist hover:text-accent"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a
+              href="#contact"
+              onClick={() => setMenuOpen(false)}
+              className="mt-1 block rounded-lg px-3 py-2.5 font-mono text-xs uppercase tracking-widest text-accent"
+            >
+              Get in touch
+            </a>
+          </li>
+        </ul>
+      )}
     </header>
   );
 }
