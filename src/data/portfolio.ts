@@ -1,6 +1,6 @@
 export const site = {
   name: "Tikamchand Kumawat",
-  title: "Full Stack Developer",
+  title: "Senior Software Engineer",
   location: "Mumbai, Maharashtra, India",
   email: "tikamchand7264@gmail.com",
   phone: "7264934079",
@@ -16,7 +16,13 @@ export const site = {
 export const heroStats = [
   { label: "uptime", value: 99.97, suffix: "%", decimals: 2 },
   { label: "replication-lag", value: 12, suffix: "ms", decimals: 0 },
-  { label: "deploy-time", value: 272, suffix: "s", decimals: 0, displayAs: "duration" as const },
+  {
+    label: "deploy-time",
+    value: 272,
+    suffix: "s",
+    decimals: 0,
+    displayAs: "duration" as const,
+  },
 ];
 
 export const stackBands = [
@@ -40,9 +46,16 @@ export const stackBands = [
 
 export const experience = [
   {
+    role: "Senior Software Engineer",
+    company: "ERGO Technologies & services",
+    period: "August 2026 – Present",
+    description:"",
+    highlights: [],
+  },
+  {
     role: "Full Stack Developer",
     company: "Beeyond Tech",
-    period: "May 2025 – Present",
+    period: "May 2025 – july 2026",
     description:
       "Developing a microservices-based e-commerce platform using Node.js, TypeScript, Next.js, PostgreSQL, and MongoDB — enabling independent scaling of product, order, and notification services.",
     highlights: [
@@ -69,7 +82,15 @@ export const projects = [
   {
     title: "Top 10 Mobiles",
     period: "May 2025 – Jan 2026",
-    stack: ["Next.js", "Node.js", "PostgreSQL", "MongoDB", "Elasticsearch", "Docker", "AWS"],
+    stack: [
+      "Next.js",
+      "Node.js",
+      "PostgreSQL",
+      "MongoDB",
+      "Elasticsearch",
+      "Docker",
+      "AWS",
+    ],
     summary:
       "Full-stack e-commerce platform handling 50K+ orders/month with multi-store order-splitting, event-driven fulfillment, and sub-150ms product search.",
     outcomes: [
